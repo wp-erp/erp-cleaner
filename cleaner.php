@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WP ERP - Installation Cleaner
- * Description: Remove databases and roles created by WP ERP plugin
+ * Description: Remove tables, roles and options created by WP ERP plugin
  * Plugin URI: https://wperp.com
  * Author: weDevs
  * Author URI: https://wedevs.com
