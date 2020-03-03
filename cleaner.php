@@ -25,7 +25,9 @@ class WeDevs_ERP_Cleaner {
             'erp_email_settings_new-task-assigned', 'erp_setup_wizard_ran', 'erp_settings_general',
             'erp_settings_accounting', 'erp_settings_erp-hr_workdays', 'wp_erp_activation_dismiss',
             '_erp_admin_menu', '_erp_adminbar_menu', 'erp_settings_erp-email_general', 'erp_settings_erp-email_smtp',
-            '_erp_company'
+            '_erp_company', 'erp_settings_erp-crm_subscription', 'erp_acct_new_ledgers',
+            'erp_email_settings_new-contact-assigned', 'erp_email_settings_hiring-anniversary-wish',
+            'wp_erp_install_date', 'widget_erp-subscription-from-widget', 'erp_tracking_notice'
         ];
 
         $roles = [
@@ -46,12 +48,37 @@ class WeDevs_ERP_Cleaner {
             'erp_crm_campaign_group', 'erp_crm_save_search', 'erp_crm_save_email_replies',
             'erp_ac_chart_classes', 'erp_ac_chart_types', 'erp_ac_journals', 'erp_ac_ledger',
             'erp_ac_banks', 'erp_ac_transactions', 'erp_ac_transaction_items', 'erp_ac_payments',
-            'erp_ac_tax', 'erp_ac_tax_items'
+            'erp_ac_tax', 'erp_ac_tax_items', 'erp_acct_bill_account_details', 'erp_acct_bill_details',
+            'erp_acct_bills', 'erp_acct_chart_of_accounts', 'erp_acct_currency_info', 'erp_acct_invoice_account_details',
+            'erp_acct_invoice_details', 'erp_acct_invoice_receipts', 'erp_acct_invoice_receipts_details',
+            'erp_acct_invoices', 'erp_acct_journal_details', 'erp_acct_journals', 'erp_acct_ledger_categories',
+            'erp_acct_ledger_details', 'erp_acct_ledger_settings', 'erp_acct_ledgers',
+            'erp_acct_cash_at_banks', 'erp_acct_transfer_voucher', 'erp_acct_opening_balances', 'erp_acct_financial_years',
+            'erp_acct_pay_bill', 'erp_acct_pay_bill_details', 'erp_acct_pay_purchase', 'erp_acct_pay_purchase_details',
+            'erp_acct_people_account_details', 'erp_acct_people_trn', 'erp_acct_people_trn_details',
+            'erp_acct_product_categories', 'erp_acct_product_types', 'erp_acct_products', 'erp_acct_product_details',
+            'erp_acct_purchase', 'erp_acct_purchase_account_details', 'erp_acct_purchase_details', 'erp_acct_tax_categories',
+            'erp_acct_taxes', 'erp_acct_tax_cat_agency', 'erp_acct_tax_agencies', 'erp_acct_tax_pay',
+            'erp_acct_tax_agency_details', 'erp_acct_invoice_details_tax', 'erp_acct_trn_status_types',
+            'erp_acct_payment_methods', 'erp_acct_expenses', 'erp_acct_expense_details', 'erp_acct_expense_checks',
+            'erp_holidays_indv', 'erp_user_leaves'
         ];
 
         foreach ($tables as $table) {
             $wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . $table );
         }
+
+        /**
+         * Or we can remove like below
+         * (no need to specify tables)
+         */
+        // $tables = $wpdb->get_results(
+        //     "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = '{$wpdb->dbname}' AND TABLE_NAME LIKE '%_erp_%'"
+        // );
+
+        // foreach ( $tables as $table ) {
+        //     $wpdb->query("DROP TABLE {$table->TABLE_NAME}");
+        // }
 
         foreach ($roles as $role) {
             remove_role( $role );
